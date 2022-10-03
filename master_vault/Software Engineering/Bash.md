@@ -1,4 +1,7 @@
-## Bash Shell
+# Bash Shell
+## Cheat Sheet
+![[Pasted image 20220718070624.png]]
+## Reference
 [Bash Manual: Bash Variables](https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-PROMPT_005fDIRTRIM)
 
 ## bash_aliases:

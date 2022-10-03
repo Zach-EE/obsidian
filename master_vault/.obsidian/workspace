@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "f65033e7447b1a11",
+        "id": "c444770c6cd06d55",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Bash.md",
+            "file": "Software Engineering/Docker.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Bash.md",
+                "file": "Software Engineering/Docker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Bash.md",
+                "file": "Software Engineering/Docker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Bash.md"
+                "file": "Software Engineering/Docker.md"
               }
             }
           }
@@ -128,6 +128,11 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "f65033e7447b1a11",
-  "lastOpenFiles": []
+  "active": "c444770c6cd06d55",
+  "lastOpenFiles": [
+    "Pasted image 20220718070624.png.md",
+    "Software Engineering/Bash.md",
+    "Software Engineering/Flask.md",
+    "Software Engineering/Django.md"
+  ]
 }
