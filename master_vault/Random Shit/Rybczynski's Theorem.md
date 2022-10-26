@@ -1,0 +1,2 @@
+- Theorem on the endowment effects of the factors of production on goods outputs
+- [youtube](https://www.youtube.com/watch?v=pnrAxfzHElo&t=455s)

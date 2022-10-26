@@ -1,14 +1,85 @@
-### Useful Commands
+# Docker Compose:
+
+## Postgresql:
+### - Compose
+```bash
+// docker-compose.yml
+version: '3.8'
+services:
+ db:
+   container_name: postgres_container
+   image: postgres
+   restart: always
+   environment:
+     POSTGRES_DB: postgres_db
+     POSTGRES_USER: admin
+     POSTGRES_PASSWORD: secret
+     PGDATA: /var/lib/postgresql/data
+   ports:
+     - "5432:5432"
+   volumes:
+     - db-data:/var/lib/postgresql/data
+
+ pgadmin:
+   container_name: pgadmin4_container
+   image: dpage/pgadmin4:5.5
+   restart: always
+   environment:
+     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+     PGADMIN_DEFAULT_PASSWORD: secret
+     PGADMIN_LISTEN_PORT: 80
+   ports:
+     - "8080:80"
+   volumes:
+     - pgadmin-data:/var/lib/pgadmin
+volumes:
+ db-data:
+ pgadmin-data:
+```
+### - Test DB Command:
+```bash
+docker run -p 5432:5432 -d -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=postgres -e POSTGRES_DB=test postgres
+```
+
+## MySQL:
+```bash
+// 
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-sec-pw -d mysql:tag)
+
+
+```
+1.  Pull image: `docker pull mysql/mysql-server:latest` 
+2. Deploy:
+	- `docker run --name=[container_name] -d [image_tag_name]`
+	- `docker run --name=mysql_container -d mysql/mysql-server:latest`
+3. See logs:
+	- `docker logs [container_name]`
+4. Access Container Shell & Update Password
+	- `docker exec -it [container_name] bash`
+	- `mysql> ALTER USER 'root'@'localhost' IDENTIFIED BT '[new_Password]'` 
+5. `docker run -p 13306:3306 --name mysql-docker-local -e MYSQL_ROOT_PASSWORD=[password]-d mysql:latest`
+# Useful Commands
 ```bash
 // Backend 
 docker build --file=backend/Dockerfile.backend -t backend:latest backend 
 
 // Frontend
 docker build --file=frontend/Dockerfile.frontend -t frontend:latest frontend
+
+// Kill all running Docker Containers
+docker kill $(docker container ls -q)
+
+docker start [container_name]
+
+docker restart [container_name]
+
+docker stop [container_name]
+
+docker rm [container_name]
 ```
 
 
-## Vue.js + Vite Development:
+# Vue.js + Vite Development:
 ### Getting Started
 1.  Setup Docker Compose file: 
 ```

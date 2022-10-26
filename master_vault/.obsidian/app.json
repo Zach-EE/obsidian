@@ -1,5 +1,6 @@
 {
   "promptDelete": false,
   "newFileLocation": "current",
-  "attachmentFolderPath": "z_Media"
+  "attachmentFolderPath": "z_Media",
+  "spellcheck": true
 }
