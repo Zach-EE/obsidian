@@ -2,5 +2,6 @@
   "promptDelete": false,
   "newFileLocation": "current",
   "attachmentFolderPath": "z_Media",
-  "spellcheck": true
+  "spellcheck": true,
+  "strictLineBreaks": true
 }

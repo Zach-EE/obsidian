@@ -13,7 +13,43 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "Random Shit/NFL.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "405eebee120b5abe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Software Engineering/React Query.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "52b24f56f82e5095",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "Random Shit/Rybczynski's Theorem.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6a3991c5fae60b0b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Software Engineering/Prisma.md",
                 "mode": "source",
                 "source": false
               }
@@ -25,7 +61,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Software Engineering/APIs.md",
+                "file": "Software Engineering/React Query.md",
                 "mode": "source",
                 "source": false
               }
@@ -67,7 +103,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -133,7 +170,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Random Shit/Rybczynski's Theorem.md",
+                "file": "Software Engineering/React Query.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -150,7 +187,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Random Shit/Rybczynski's Theorem.md",
+                "file": "Software Engineering/React Query.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -173,7 +210,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Random Shit/Rybczynski's Theorem.md"
+                "file": "Software Engineering/React Query.md"
               }
             }
           }
@@ -184,20 +221,17 @@
     "width": 300,
     "collapsed": true
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "2345329391de3c36",
+  "active": "405eebee120b5abe",
   "lastOpenFiles": [
+    "Random Shit/News & Current Events.md",
+    "Random Shit/NFL.md",
+    "Software Engineering/React Query.md",
     "Software Engineering/Prisma.md",
-    "Random Shit/Rybczynski's Theorem.md",
-    "Software Engineering/Yup.md",
-    "Software Engineering/Docker.md",
+    "Software Engineering/React Hook Forms.md",
     "Software Engineering/APIs.md",
-    "Software Engineering/ReactJS.md",
+    "Random Shit/Rybczynski's Theorem.md",
     "Software Engineering/Flask.md",
-    "Software Engineering/Bash.md",
-    "Software Engineering/Django.md",
-    "Pasted image 20220718070624.png.md"
+    "Software Engineering/Yup.md",
+    "Software Engineering/Docker.md"
   ]
 }

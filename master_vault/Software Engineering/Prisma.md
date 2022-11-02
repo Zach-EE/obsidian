@@ -61,3 +61,13 @@ model Note {
 - An `updatedAt`, of type `DateTime`.
 - An optional `title` of type `String`.
 - An optional `body` of type `String`.
+
+## [Prisma Schema](https://www.prisma.io/docs/concepts/components/prisma-schema)
+
+## [Data Model](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#native-type-mapping)
+- Represent the entities of your application domain
+- Map to the tables of relational DBs or Collections of non-relational DBs
+
+## Generators:
+- prisma-yup-generator
+	- `yarn add prisma-yup-generator`
