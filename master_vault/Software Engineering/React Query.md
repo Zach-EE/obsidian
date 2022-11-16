@@ -53,7 +53,7 @@ The query can only be in one of the following states at a given moment:
 
 For most queries, it is sufficient to check for `isLoading` state, then check `isError` state, and finally assume the data is available and render successful state.
 
-*Note: TypeScript will narrow the type of `data` correctly if you'vs checked for `loading` & `error` before accessing it*
+*Note: TypeScript will narrow the type of `data` correctly if you'vs checked for `loading` & `error` before accessing it.*
 
 ### FetchStatus:
 
@@ -444,3 +444,272 @@ const todoListQuery = useQuery(['todos', { version: 5 }], fetchTodoList)
 
 
 
+# RQ Course:
+
+## Getting Started
+
+**Client State:**
+1. Ephemeral - It goes away when the browser is closed
+2. Synchronous - Instantly available
+3. Client-Owned - It stays local to the browser that created it
+
+**Server State:** 
+1. Stored Remotely - The client has no control over what is stored or how it is stored
+2. Asynchronous - It takes a bit of time for the data to come from the server to the client
+3. Owned by many users - Multiple users could change the data
+
+**Typical Fetching Requirements:**
+1. Rendering the same data across multiple components without doing re-fetches
+2. DE-duplicating identical requests
+3. Using a cache to limit the number of 'fetch requests'
+4. Automatically refetching to have the freshest data 
+5. Handling pagination
+6. Updating our local data when we make mutations to the remote data
+7. Orchestrating requests that depend on the result of other requests
+## Query Keys and Query Functions
+
+### Query Keys:
+
+After React Query makes a query it places those query results into cache. By requiring a key react query knows which data in cache belongs to which call. 
+
+Query keys are arrays, kind of like the dependency array seen in `useEffect`. Each item in query array should cause the query to refetch when it changes.
+
+```jsx
+// query refetches when username variable changes
+useQuery(['user', username], fetchLabels)
+
+// all valid queries
+useQuery(["users", 1], fetchUser);
+useQuery(["labels", labelName], fetchLabel);
+useQuery(["issues", {completed: false}], fetchIssues);
+```
+
+Best practice when writing effective query keys is by building from **Generic to Specific** pattern mimicking that seen in majority of REST APIs.
+
+```jsx
+// Example of query for Githubs REST API
+// https://api.github.com/repos/{owner}/{repo}/issues
+useQuery(["issues", owner, repo], queryFn);
+
+// https://api.github.com/repos/uidotdev/usehooks/issues?state=closed
+// bad approach see exaple below for better practice
+function Issues({ owner, repo }) {
+  const [issueState, setIssueState] = useState("open");
+
+  const issuesQuery = useQuery(
+    ["issues", owner, repo, issueState], 
+    queryFn
+  );
+  
+  ...
+}
+// Multi filter query using object *best practice*
+function Issues({ owner, repo }) {
+  const [issueState, setIssueState] = useState("open");
+  const [assignee, setAssignee] = useState();
+  const [labels, setLabels] = useState("");
+
+  const issuesQuery = useQuery(
+    [
+      "issues",
+      owner,
+      repo,
+      { 
+      // Object with filters, 
+      // Filter parameter most specific therefore placed at end of key array
+        state: issueState, 
+        assignee,
+        labels: labels || undefined 
+      },
+    ],
+    queryFn
+  );
+
+  ...
+}
+```
+*It is helpful to put a string at the beginning of the array key to identify the kind of data being fetched*
+
+### Query Functions
+
+Any function that can returns a valid promise can be used in a valid query. Any callback function can be turned into a promise by wrapping it in `new Promise()`sud
+```jsx
+async function getLocation() {
+  return new Promise((resolve, reject) => {
+    navigator
+      .geolocation
+      .getCurrentPosition(resolve, reject);
+  });
+}
+
+function Location() {
+  const locationQuery = useQuery(["location"], getLocation);
+
+  if (locationQuery.isLoading) {
+    return <p>Calculating location...</p>;
+  }
+
+  if (locationQuery.error) {
+    return <p>Error: {userQuery.error.message}</p>;
+  }
+
+  return (
+    <p>
+      Your location is:
+      {locationQuery.data.coords.latitude}, 
+      {locationQuery.data.coords.longitude}
+    </p>
+  );
+}
+
+// Can also use query keys in function arguments
+await function getGithubUser({ queryKey }) {
+  const [user, username] = queryKey;
+
+  return fetch(`https://api.github.com/users/${username}`)
+    .then((res) => res.json());
+};
+
+const User = ({ username }) => {
+  const userQuery = useQuery(
+    ["user", username],
+    getGithubUser,
+  );
+
+  if (userQuery.isLoading) {
+    return <p>Getting user...</p>;
+  }
+
+  if (userQuery.error) {
+    return (
+      <p>Error getting user: {userQuery.error.message}</p>
+    );
+  }
+
+  return <p>{userQuery.data.name}</p>;
+};
+```
+
+As query grows in complexity using the query key to pass parameters to query function becomes quite helpful.
+
+
+```jsx
+// Querykey passed to queryFunction
+function getIssues({ queryKey }) {
+  const [issues, owner, repo, filters] = queryKey;
+
+  const filterQuery = new URLSearchParams();
+
+  if (filters.assignee) {
+    filterQuery.append("assignee", filters.assignee);
+  }  
+
+  if (filters.labels && filters.labels.length > 0) {
+    filterQuery.append("labels", filters.labels.join(","));
+  }  
+
+  if (filters.state) {
+    filterQuery.append("state", filters.state);
+  }  
+
+  const filterQueryString = filterQuery.toString();
+
+  return fetch(
+    `https://api.github.com/repos/${owner}/${repo}/issues${
+      filterQueryString ? `?${filterQueryString}` : ""
+    }`,
+  ).then((res) => res.json());
+}
+
+function Issues({ owner, repo }) {
+  const [issueState, setIssueState] = useState("open");
+  const [assignee, setAssignee] = useState();
+  const [labels, setLabels] = useState("");
+
+  const issuesQuery = useQuery(
+    [
+      "issues",
+      owner,
+      repo,
+      { 
+        state: issueState, 
+        assignee, 
+        labels: labels || undefined 
+      },
+    ],
+    getIssues,
+  );
+  
+  ...
+}
+```
+
+A better practice is to scale up your queries in your application by creating custom hooks for the query that can be reused in your application. This helps avoid the problem of accidentally writing different query keys for the same data, since the query key will always be correct whenever the hooks is used. 
+
+```jsx
+function useGithubIssuesQuery({ owner, repo, filters }) {
+  function getIssues() {
+    const filterQuery = new URLSearchParams();
+    
+    if (filters.assignee) {
+      filterQuery.append("assignee", filters.assignee);
+    }
+
+    if (filters.labels && filters.labels.length > 0) {
+      filterQuery.append("labels", filters.labels.join(","));
+    }
+
+    if (filters.state) {
+      filterQuery.append("state", filters.state);
+    }
+
+    const filterQueryString = filterQuery.toString();
+
+    return fetch(
+      `https://api.github.com/repos/${owner}/${repo}/issues${
+        filterQueryString ? `?${filterQueryString}` : ""
+      }`,
+    ).then(res => res.json());
+  }
+
+  return useQuery(
+    ["issues", owner, repo, filters],
+    getIssues
+  );
+}
+```
+
+By using query in its own custom hook you can be confident that all of the queries are sharing the same cache data anywhere they are used in the application, and minimizes the number of network requests.
+
+
+## Examples
+
+**Index Query**
+```jsx
+import * as React from "react";
+import { useQuery } from "react-query";
+
+export default function App() {
+  const labelsQuery = useQuery(["labels"], () => {
+    return fetch("https://ui.dev/api/courses/react-query/labels").then((res) =>
+      res.json()
+    );
+  });
+  const labels = labelsQuery.data;
+  return (
+    <div>
+      <h1>Labels</h1>
+      {labelsQuery.isLoading && <p>Loading...</p>}
+      {labelsQuery.isSuccess && (
+        <ul>
+          {labels.map((label) => (
+            <li key={label.id}>
+              <span style={{ color: label.color }}></span> {label.name}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+```

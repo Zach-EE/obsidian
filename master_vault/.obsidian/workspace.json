@@ -4,107 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "c084b593d4fcfc1c",
+        "id": "9b948c4b550e1257",
         "type": "tabs",
         "children": [
           {
-            "id": "c444770c6cd06d55",
+            "id": "2211f5eeae569d8b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Random Shit/NFL.md",
-                "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "405eebee120b5abe",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Software Engineering/React Query.md",
-                "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "52b24f56f82e5095",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Random Shit/Rybczynski's Theorem.md",
+                "file": "Software Engineering/Testing Utils.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "6a3991c5fae60b0b",
+            "id": "31e1f47f6f180041",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Software Engineering/Prisma.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "431d08ca30bbc9d4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Software Engineering/React Query.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6c7d1e46fd2a8924",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Software Engineering/Bash.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e908123495f11713",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Software Engineering/Docker.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9a2fdaf8d3badc6c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Software Engineering/Bash.md",
+                "file": "Software Engineering/Flask.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -170,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Software Engineering/React Query.md",
+                "file": "Software Engineering/Testing Utils.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -187,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Software Engineering/React Query.md",
+                "file": "Software Engineering/Testing Utils.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -210,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Software Engineering/React Query.md"
+                "file": "Software Engineering/Testing Utils.md"
               }
             }
           }
@@ -221,17 +148,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "405eebee120b5abe",
+  "active": "2211f5eeae569d8b",
   "lastOpenFiles": [
-    "Random Shit/News & Current Events.md",
-    "Random Shit/NFL.md",
-    "Software Engineering/React Query.md",
-    "Software Engineering/Prisma.md",
-    "Software Engineering/React Hook Forms.md",
-    "Software Engineering/APIs.md",
-    "Random Shit/Rybczynski's Theorem.md",
-    "Software Engineering/Flask.md",
+    "z_shared/Pasted image 20221103094900.png",
     "Software Engineering/Yup.md",
-    "Software Engineering/Docker.md"
+    "z_shared/Pasted image 20221103101607.png",
+    "Software Engineering/Data Structures and Algorithms.md",
+    "Projects/Event.Gives.md",
+    "Software Engineering/Docker.md",
+    "Software Engineering/Flask.md",
+    "Software Engineering/Django.md",
+    "Software Engineering/Bash.md",
+    "Software Engineering/google.com.md"
   ]
 }

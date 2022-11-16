@@ -82,3 +82,4 @@ alias dec='cal -m 12'
 # sudo apt install tree
 alias tree='tree --dirsfirst -F'
 ```
+

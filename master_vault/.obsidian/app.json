@@ -1,7 +1,8 @@
 {
   "promptDelete": false,
   "newFileLocation": "current",
-  "attachmentFolderPath": "z_Media",
+  "attachmentFolderPath": "z_shared",
   "spellcheck": true,
-  "strictLineBreaks": true
+  "strictLineBreaks": true,
+  "showUnsupportedFiles": true
 }

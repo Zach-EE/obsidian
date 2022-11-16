@@ -1,7 +1,7 @@
 # Docker Compose:
 
+
 ## Postgresql:
-### - Compose
 ```bash
 // docker-compose.yml
 version: '3.8'
@@ -42,10 +42,18 @@ docker run -p 5432:5432 -d -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=postgres -
 ```
 
 ## MySQL:
-```bash
-// 
-docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-sec-pw -d mysql:tag)
 
+```bash
+docker run --name some-mysql --rm -v /tmp/mysql-data:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=hardPass123! -e MYSQL_DATABASE=someDbName -d mysql:tag 
+
+// --rm will remove container when it stops
+// --name names container
+// -e sets enviroment settings PASSWORD DB NAME
+// -p maps host port to container port
+// -it will show tags *Not included above* not compatible with -d
+// -d launches in headless mode without it container runs in terminal
+// mysql:tag is just version I use mysql:latest unless I have a reason
+``` 
 
 ```
 1.  Pull image: `docker pull mysql/mysql-server:latest` 
@@ -56,8 +64,8 @@ docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-sec-pw -d my
 	- `docker logs [container_name]`
 4. Access Container Shell & Update Password
 	- `docker exec -it [container_name] bash`
-	- `mysql> ALTER USER 'root'@'localhost' IDENTIFIED BT '[new_Password]'` 
-5. `docker run -p 13306:3306 --name mysql-docker-local -e MYSQL_ROOT_PASSWORD=[password]-d mysql:latest`
+	- `mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '[new_Password]'` 
+5. `docker run -p 3306:3306 --name mysql-docker-local -e MYSQL_ROOT_PASSWORD=[password]-d mysql:latest`
 # Useful Commands
 ```bash
 // Backend 
@@ -140,3 +148,4 @@ export default defineConfig({
 	- `cd my_frontend && npm install`
 	- `npm run dev` 
 	- ... and you are of too the races
+	- 
