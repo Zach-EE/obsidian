@@ -1,4 +1,4 @@
 - Theorem on the endowment effects of the factors of production on goods outputs
 - Also known as dutch disease
-- What happens when a country becomes dependent on one country ie Dutch, and Arab states and Oil.
+- What happens when a country becomes dependent on one country *i.e.* Dutch, and Arab states and Oil.
 - [youtube](https://www.youtube.com/watch?v=pnrAxfzHElo&t=455s)
